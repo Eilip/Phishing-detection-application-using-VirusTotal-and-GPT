@@ -19,7 +19,7 @@ def create_files():
 
 # Function for Virustotal API scanning
 def scan_link(link):
-    api_key = "<ENTER VIRUSTOTAL API>"  # Replace with your Virustotal API key
+    api_key = "VIRUSTOTAL API_KEYS"  # Replace with your Virustotal API key
     url = f"https://www.virustotal.com/vtapi/v2/url/scan"
     params = {"apikey": api_key, "url": link}
 
@@ -33,7 +33,7 @@ def scan_link(link):
 
 # Function to get Virustotal scan report
 def get_scan_report(scan_id):
-    api_key = "<ENTER VIRUSTOTAL API>"  # Replace with your Virustotal API key
+    api_key = "VIRUSTOTAL API_KEY"  # Replace with your Virustotal API key
     url = f"https://www.virustotal.com/vtapi/v2/url/report"
     params = {"apikey": api_key, "resource": scan_id}
 
@@ -47,7 +47,7 @@ def get_scan_report(scan_id):
 
 # Function for ChatGPT API
 def chatgpt_api(prompt):
-    openai_key = "<ENTER GPT API>"  # Replace with your OpenAI API key
+    openai_key = "GPT_API_keys"  # Replace with your OpenAI API key
     endpoint = "https://api.openai.com/v1/chat/completions"
 
     headers = {
@@ -77,6 +77,12 @@ def find_server_ip(link):
     except socket.error as e:
         print(f"Error in finding server IP: {e}")
         return None
+    
+    
+def clear_entries():
+    entry_link.delete(0, tk.END)
+    entry_email.delete(0, tk.END)
+    output_entry.delete(1.0, tk.END)
 
 # Function to log entry in the database
 def log_entry(filename, link, email, date_time, api_issue=False, gpt_issue=False):
@@ -161,7 +167,7 @@ background_label.place(relwidth=1, relheight=1)
 # Create labels and entry widgets
 label_link = tk.Label(root, text="Enter Link:")
 label_link.place(x=20, y=20)
-entry_link = tk.Entry(root, width=0, background='silver')
+entry_link = tk.Entry(root, width=80, background='silver')
 entry_link.place(x=100, y=20)
 
 
@@ -178,8 +184,13 @@ output_entry.place(x=20, y=100)
 button_scan = tk.Button(root, text="Scan Link", background="yellow", fg='red', command=main_process)
 button_scan.place(x=20, y=350)
 
+# Create Clear button
+button_clear = tk.Button(root, text="Clear", background="red", fg='yellow', command=clear_entries)
+button_clear.place(x=120, y=350)
+
 # Define tag configuration for styling output
 output_entry.tag_configure("danger", foreground="red")
+output_entry.tag_configure("gpt", foreground="blue")
 output_entry.tag_configure("gpt", foreground="blue")
 
 root.mainloop()
