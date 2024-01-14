@@ -19,7 +19,7 @@ def create_files():
 
 # Function for Virustotal API scanning
 def scan_link(link):
-    api_key = "0e14512b2be78d5a16879ca3a404af944a2fb9d1b42489cfa2ae06925cac7e45"  # Replace with your Virustotal API key
+    api_key = "VIRUSTOTAL API_KEYS"  # Replace with your Virustotal API key
     url = f"https://www.virustotal.com/vtapi/v2/url/scan"
     params = {"apikey": api_key, "url": link}
 
@@ -33,7 +33,7 @@ def scan_link(link):
 
 # Function to get Virustotal scan report
 def get_scan_report(scan_id):
-    api_key = "0e14512b2be78d5a16879ca3a404af944a2fb9d1b42489cfa2ae06925cac7e45"  # Replace with your Virustotal API key
+    api_key = "VIRUSTOTAL API_KEY"  # Replace with your Virustotal API key
     url = f"https://www.virustotal.com/vtapi/v2/url/report"
     params = {"apikey": api_key, "resource": scan_id}
 
@@ -47,7 +47,7 @@ def get_scan_report(scan_id):
 
 # Function for ChatGPT API
 def chatgpt_api(prompt):
-    openai_key = "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"  # Replace with your OpenAI API key
+    openai_key = "GPT_API_keys"  # Replace with your OpenAI API key
     endpoint = "https://api.openai.com/v1/chat/completions"
 
     headers = {
